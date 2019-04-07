@@ -1,0 +1,5 @@
+dataset/data/
+*_logs/
+.idea/
+*.pyc
+*~
