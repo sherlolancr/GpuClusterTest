@@ -1,7 +1,7 @@
 import tensorflow as tf
 import config
 import os
-from urllib.request import urlretrieve
+from urllib2 import urlopen
 from zipfile import ZipFile
 from dataset.dataset import Dataset
 from network.eval import Learning
@@ -17,7 +17,8 @@ def download_dataset_if_needed():
     def download_and_unzip(zipurls):
         for url in zipurls:
             print("Downloading {}".format(url))
-            fpath, _ = urlretrieve(url, tmp_zip_adr)
+            tmp_zip_adr = "temp.zip"
+            fpath, _ = urlopen(url, tmp_zip_adr)
             zf = ZipFile(fpath)
             zf.extractall(data_dir)
             zf.close()
@@ -32,12 +33,12 @@ def download_dataset_if_needed():
 
 def main(argv=None):
     print(device_lib.list_local_devices())
-    download_dataset_if_needed()
-    if FLAGS.update or not os.path.exists(data_dir + 'segmented_set1'):
-        print("Starting processing binary dataset")
-        Dataset().create_dataset(data_dir + "segmented_set?/*.avi")
+ #   download_dataset_if_needed()
+  #  if FLAGS.update or not os.path.exists(data_dir + 'segmented_set1'):
+    #    print("Starting processing binary dataset")
+   #     Dataset().create_dataset(data_dir + "segmented_set?/*.avi")
 
-    Learning()
+    #Learning()
 
 
 if __name__ == '__main__':
